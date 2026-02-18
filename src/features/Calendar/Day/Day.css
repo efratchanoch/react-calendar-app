@@ -1,0 +1,39 @@
+.day-card {
+  border: 1px solid #ecf0f1;
+  padding: 15px;
+  min-height: 100px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  transition: transform 0.2s, background-color 0.2s;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.day-card:hover {
+  background-color: #ebf5fb;
+  transform: translateY(-3px);
+  border-color: #3498db;
+}
+
+.hebrew-date {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #2980b9;
+}
+
+.english-date {
+  font-size: 0.75rem;
+  color: #95a5a6;
+}
+
+.event-count {
+  margin-top: 5px;
+  font-size: 0.8rem;
+  background-color: #e74c3c;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 10px;
+  width: fit-content;
+}

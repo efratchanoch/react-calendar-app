@@ -1,15 +1,15 @@
 import { useSelector } from 'react-redux';
-import Day from '../Day/Day';
+import Day from '../Day/Day.jsx';
 import './Calendar.css';
 
-export default Calendar = () => {
+export default function Calendar() {
 
     const monthData = useSelector((state) => state.calendar.monthData);
 
     return (
         <div className="calendar-wrapper">
             <div className="calendar-grid">
-                {['א', 'ב', 'ג', 'ד', 'ה', 'ו', 'ש'].map(day => (
+                {['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת'].map(day => (
                     <div key={day} className="grid-header">{day}</div>
                 ))}
 

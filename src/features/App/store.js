@@ -6,3 +6,4 @@ export const store = configureStore({
     calendar: calendarReducer,
   },
 });
+export default store;

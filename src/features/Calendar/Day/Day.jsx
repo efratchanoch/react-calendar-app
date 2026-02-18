@@ -1,6 +1,6 @@
 import './Day.css';
 
-export default  Day = ({ date, details }) => {
+const Day = ({ date, details }) => {
   const handleClick = () => {
     if (details.events.length > 0) {
       alert(`אירועים בתאריך ${details.hebrew}:\n${details.events.join('\n')}`);
@@ -13,8 +13,11 @@ export default  Day = ({ date, details }) => {
     <div className="day-card" onClick={handleClick}>
       <div className="hebrew-date">{details.hebrew}</div>
       <div className="english-date">{date}</div>
-      {details.events.length > 0 && <div className="event-count">{details.events.length} אירועים</div>}
+      {details.events?.length > 0 && (
+        <div className="event-count">{details.events.length} אירועים</div>
+      )}
     </div>
   );
 };
 
+export default Day; 
