@@ -1,10 +1,24 @@
-import { useSelector } from 'react-redux';
+import { fetchMonthData } from '../calendarSlice';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Day from '../Day/Day.jsx';
 import './Calendar.css';
 
 export default function Calendar() {
 
-    const monthData = useSelector((state) => state.calendar.monthData);
+    const dispatch = useDispatch();
+    const { monthData, loading } = useSelector((state) => state.calendar);
+
+    useEffect(() => {
+        const now = new Date();
+    
+        dispatch(fetchMonthData({
+            month: now.getMonth() + 1,
+            year: now.getFullYear()
+        }));
+    }, [dispatch]);
+
+    if (loading) return <div>טוען לוח שנה...</div>;
 
     return (
         <div className="calendar-wrapper">
@@ -20,3 +34,5 @@ export default function Calendar() {
         </div>
     );
 };
+
+
