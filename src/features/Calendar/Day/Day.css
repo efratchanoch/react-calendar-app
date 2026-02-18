@@ -25,7 +25,8 @@
 
 .english-date {
   font-size: 0.75rem;
-  color: #95a5a6;
+  color: #3d4142;
+  font-weight: bold;
 }
 
 .event-count {
@@ -36,4 +37,14 @@
   padding: 2px 6px;
   border-radius: 10px;
   width: fit-content;
+}
+
+.event-item {
+  background-color: #f0f0f0;
+  font-size: 0.75rem;
+  margin-top: 4px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #444444cd;
+  border-right: 3px solid #ddd; 
 }

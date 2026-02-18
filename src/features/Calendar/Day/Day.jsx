@@ -1,23 +1,32 @@
+import { useDispatch } from 'react-redux';
+import { addEvent } from '../calendarSlice'; 
 import './Day.css';
 
 const Day = ({ date, details }) => {
-  const handleClick = () => {
-    if (details.events.length > 0) {
-      alert(`אירועים בתאריך ${details.hebrew}:\n${details.events.join('\n')}`);
-    } else {
-      alert(`אין אירועים בתאריך ${details.hebrew}`);
-    }
-  };
+    const dispatch = useDispatch();
 
-  return (
-    <div className="day-card" onClick={handleClick}>
-      <div className="hebrew-date">{details.hebrew}</div>
-      <div className="english-date">{date}</div>
-      {details.events?.length > 0 && (
-        <div className="event-count">{details.events.length} אירועים</div>
-      )}
-    </div>
-  );
+    const handleDayClick = () => {
+        const eventName = prompt(`הזן אירוע חדש לתאריך ${details.hebrew}:`);
+
+        if (eventName && eventName.trim() !== "") {
+            dispatch(addEvent({ date, eventName }));
+        }
+    };
+
+    return (
+        <div className="day-card" onClick={handleDayClick}>
+            <div className="hebrew-date">{details.hebrew}</div>
+            <div className="english-date">{date}</div>
+
+            <div className="events-list">
+                {details.events.map((event, index) => (
+                    <div key={index} className="event-item">
+                        {event}
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
 };
 
-export default Day; 
+export default Day;
