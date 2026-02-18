@@ -1,0 +1,12 @@
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  direction: rtl;
+}
+.day-card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  cursor: pointer;
+  min-height: 80px;
+}
