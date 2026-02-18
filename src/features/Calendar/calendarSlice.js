@@ -18,9 +18,19 @@ const calendarSlice = createSlice({
       if (state.monthData[date]) {
         state.monthData[date].events.push(eventName);
       }
+    },
+
+    removeEvent: (state, action) => {
+      const { date, index } = action.payload;
+      if (state.monthData[date]) {
+        state.monthData[date].events = state.monthData[date].events.filter((_, i) => i !== index);
+      }
     }
   }
 });
 
-export const { addEvent } = calendarSlice.actions;
+
+
+
+export const { addEvent, removeEvent } = calendarSlice.actions;
 export default calendarSlice.reducer;

@@ -48,3 +48,28 @@
   color: #444444cd;
   border-right: 3px solid #ddd; 
 }
+
+.event-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f9f9f9;
+  padding: 2px 5px;
+  margin-top: 3px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.delete-btn {
+     font-size: 1.8rem;
+  background: none;
+  border: none;
+  color: #ff4d4d;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 0 4px;
+}
+
+.delete-btn:hover {
+  color: #cc0000;
+}
