@@ -1,20 +1,30 @@
 import { useDispatch } from 'react-redux';
 import { addEvent, removeEvent } from '../calendarSlice';
+import { useNavigate } from 'react-router-dom';
 import './Day.css';
 
-const Day = ({ date, details }) => {
+const Day = ({ date, details, isCurrentMonth }) => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleDayClick = () => {
-        const eventName = prompt(`הזן אירוע חדש לתאריך ${details.hebrew}:`);
+        if (!isCurrentMonth) {
+            const clickedDate = new Date(date);
+            const newMonth = clickedDate.getMonth() + 1;
+            const newYear = clickedDate.getFullYear();
 
+            navigate(`/calendar/${newMonth}/${newYear}`);
+            return;
+        }
+
+        const eventName = prompt(`הזן אירוע חדש לתאריך ${details.hebrew}:`);
         if (eventName && eventName.trim() !== "") {
             dispatch(addEvent({ date, eventName }));
         }
     };
 
     const handleRemove = (e, index) => {
-        e.stopPropagation(); 
+        e.stopPropagation();
         if (window.confirm("האם למחוק את האירוע?")) {
             dispatch(removeEvent({ date, index }));
         }

@@ -15,7 +15,7 @@ export const fetchMonthData = createAsyncThunk(
         `https://www.hebcal.com/converter?cfg=json&start=${formattedStartDate}&end=${formattedEndDate}&g2h=1`
       );
 
-      return response.data.hdates; 
+      return response.data.hdates;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -30,18 +30,19 @@ const calendarSlice = createSlice({
     error: null
   },
   reducers: {
-      addEvent: (state, action) => {
-        const { date, eventName } = action.payload;
-        if (state.monthData[date]) {
-          state.monthData[date].events.push(eventName);
-        }
-      },
-      removeEvent: (state, action) => {
-        const { date, index } = action.payload;
-        if (state.monthData[date]) {
-          state.monthData[date].events.splice(index, 1);
-        }
+    addEvent: (state, action) => {
+      const { date, eventName } = action.payload;
+      if (!state.monthData[date]) {
+        state.monthData[date] = { hebrew: "", events: [] };
       }
+      state.monthData[date].events.push(eventName);
+    },
+    removeEvent: (state, action) => {
+      const { date, index } = action.payload;
+      if (state.monthData[date]) {
+        state.monthData[date].events.splice(index, 1);
+      }
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -55,7 +56,7 @@ const calendarSlice = createSlice({
         Object.entries(action.payload).forEach(([date, info]) => {
           processedData[date] = {
             hebrew: info.hebrew,
-            events: [] 
+            events: []
           };
         });
 
@@ -64,7 +65,7 @@ const calendarSlice = createSlice({
       .addCase(fetchMonthData.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
-        alert(`שגיאה בטעינת הנתונים: ${action.payload}`); 
+        alert(`שגיאה בטעינת הנתונים: ${action.payload}`);
       });
   }
 });
